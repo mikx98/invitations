@@ -6,7 +6,7 @@ B = set([ x for x in open('baby.data', 'r').read().splitlines() ])
 
 A = set([
 	x['user__first_name']
-	for x in csv.DictReader(open('inv.data'))
+	for x in csv.DictReader(open('data'))
 	if x['type'] != 'vedúci' and x['user__first_name'] not in B
 ])
 

@@ -10,7 +10,7 @@ B = [ x for x in open('baby.data').read().splitlines() ]
 
 A = [
 	( x['user__first_name'] + ' ' + x['user__last_name'], x['user__email'] )
-	for x in csv.DictReader(open('inv.data'))
+	for x in csv.DictReader(open('data'))
 	if x['type'] == what and not (baba ^ (x['user__first_name'] in B))
 ]
 
