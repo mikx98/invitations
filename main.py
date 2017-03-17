@@ -3,15 +3,15 @@ import csv
 what = 'účastník'
 # what = 'náhradník'
 
-# zena = True
-zena = False
+# baba = True
+baba = False
 
 B = [ x for x in open('baby.data').read().splitlines() ]
 
 A = [
 	( x['user__first_name'] + ' ' + x['user__last_name'], x['user__email'] )
 	for x in csv.DictReader(open('inv.data'))
-	if x['type'] == what and not (zena ^ (x['user__first_name'] in B))
+	if x['type'] == what and not (baba ^ (x['user__first_name'] in B))
 ]
 
 # print('\n'.join([', '.join(x) for x in A])) # meno, email
