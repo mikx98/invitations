@@ -27,6 +27,17 @@ Otherwise, remove corresponding line in `baby.data`.
 
 ## 3. let invitations make its wonder
 
-Modify constants in `main.py` source code to generate emails for
-the particular group of people. Then simply run `python3 main.py`. The
-constants are self-explanatory.
+Run `python3 main.py` to generate emails for all the groups of people
+you need to distinguish between. The format speaks for itself.
+
+## FAQ
+
+### How do I get the diff?
+
+When you are done with the current database, use `python3 main.py --save` to
+let the app know. Next time you run the app, it will print out only the data
+that changed.
+
+### How do I reset the database?
+
+Either by running `python3 main.py --reset` or by manually deleting `sent.data` file.
