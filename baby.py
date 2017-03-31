@@ -1,8 +1,22 @@
-import csv, sys, os
+import csv, sys, os, argparse
+
+parser = argparse.ArgumentParser()
+parser.add_argument('--ooh', '-o', help='repair the database', action='store_true')
+args = parser.parse_args()
 
 if not os.path.exists('baby.data'):
 	open('baby.data', 'w')
 B = set([ x for x in open('baby.data', 'r').read().splitlines() ])
+
+if args.ooh:
+	R = set()
+	for x in B:
+		sys.stdout.write(x + '? ')
+		sys.stdout.flush()
+		if sys.stdin.readline() != '\n':
+			R.add(x)
+	open('baby.data', 'w').writelines('\n'.join(B - R) + '\n')
+	exit()
 
 A = set([
 	x['user__first_name']

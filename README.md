@@ -23,7 +23,8 @@ When answering, press **only** *ENTER* for challos' names and enter anything
 else followed by *ENTER* for babes.
 
 Made a mistake? If you didn't select all babes, simply run the script again.
-Otherwise, remove corresponding line in `baby.data`.
+Otherwise, either run `python3 baby.py --ooh` and filter out challos or
+remove corresponding line in `baby.data`.
 
 ## 3. let invitations make its wonder
 
