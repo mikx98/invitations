@@ -42,3 +42,9 @@ that changed.
 ### How do I reset the database?
 
 Either by running `python3 main.py --reset` or by manually deleting `sent.data` file.
+
+### How do you get ignorants?
+
+Ignorants, or the **people that haven't yet expressed their attendance attitude**
+can be retrieved by running `python3 main.py --ignorants`. Don't forget to
+update the database before running!

@@ -3,6 +3,9 @@ import csv, argparse, os
 parser = argparse.ArgumentParser()
 parser.add_argument('--save', '-s', help='save emails, consider data outdated', action='store_true')
 parser.add_argument('--reset', '-r', help='reset, forget saved data (except baby.data)', action='store_true')
+# ignorants should exclude diff
+parser.add_argument('--ignorants', '-i', help='filter out ignorants (show only them)', action='store_true')
+# raw output...?
 args = parser.parse_args()
 
 whats = ['účastník', 'náhradník']
@@ -21,12 +24,13 @@ for what in whats:
 			( x['user__first_name'] + ' ' + x['user__last_name'], x['user__email'] )
 			for x in csv.DictReader(open('data'))
 			if x['type'] == what and not (baba ^ (x['user__first_name'] in B))
+				and (not args.ignorants or x['going'] == '')
 		]
 		C.extend([x[1] + ' ' + what for x in A])
 
 		# filtering out good ol' non-changed fellas
 		SSS = [x[0] for x in SAVED if x[1] == what]
-		A = list(filter(lambda x: x[1] not in SSS, A))
+		A = list(filter(lambda x: x[1] not in SSS or args.ignorants, A))
 
 		# voulaaa -- printing out data
 		if not (args.save or args.reset):
@@ -40,7 +44,6 @@ for what in whats:
 				print('\t' + 'No good ol\' fella here.')
 
 			print()
-
 
 if args.save:
 	open('sent.data', 'w').writelines('\n'.join(C) + '\n')
